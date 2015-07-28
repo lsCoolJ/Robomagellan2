@@ -75,7 +75,30 @@ void openPic() {
     unsigned char image[HEIGHT][WIDTH*3];
     fread(image, 1, HEIGHT * WIDTH * 3, imageFile);
     
-    analyzePicture(image);
+//    analyzePicture(image);
+
+    unsigned char red, green, blue;
+    int pass = 1;
+    int r, c;
+    // cycles through the rows and columns and stores the average of the pixels
+    for (r = 0; r < HEIGHT; r++) {
+        for (c = 0; c < WIDTH; c++) {
+            switch(pass) {
+                case 1 : red = image[r][c];
+                  break;
+                case 2 : green = image[r][c];
+                  break;
+                case 3 : blue = image[r][c];
+                  break;
+            }
+            if (pass == 3) {
+                if(!analyzePixel(red, green, blue)) {
+                    image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
+                }
+                pass = 1;
+            }
+        }
+    }
 
     fwrite(header, 1, 54, imageFile);
     fwrite(image, 1, HEIGHT * WIDTH * 3, imageFile);
