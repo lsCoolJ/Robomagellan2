@@ -27,11 +27,11 @@ int createPic(void) {
 // analyzes pixel
 int analyzePixels(unsigned char r, unsigned char g, unsigned char b) {
     int retVal = 0;
-    // if((r >= RED_MIN) && (r <= RED_MAX) &&
-    //   (g >= GRN_MIN) && (g <= GRN_MAX) &&
-    //   (b >= BLU_MIN && b <= BLU_MAX)) {
-    //     retVal = 1;
-    // }
+    if((r > RED_MIN) && (r < RED_MAX) &&
+      (g > GRN_MIN) && (g < GRN_MAX) &&
+      (b > BLU_MIN && b < BLU_MAX)) {
+        retVal = 1;
+    }
     return retVal;
 }
 
