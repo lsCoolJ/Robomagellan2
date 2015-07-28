@@ -83,7 +83,7 @@ void openPic() {
 
     // cycles through the rows and columns and stores the average of the pixels
     for (r = 0; r < HEIGHT; r++) {
-        for (c = 0; c < WIDTH; c++) {
+        for (c = 0; c < WIDTH * 3; c++) {
             switch(pass) {
                 case 1 : red = image[r][c];
                   break;
