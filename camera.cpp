@@ -88,6 +88,6 @@ void showPic() {
 int main(void) {
     createPic();
     openPic();
-
+    showPic();
     return 0;
 }
