@@ -10,14 +10,14 @@
 #define WH_SIZE 1
 #define HEADER_SIZE 54
 
-#define RED_MAX = 255
-#define RED_MIN = 240
+#define RED_MAX 255
+#define RED_MIN 240
 
-#define GRN_MIN = 255
-#define GRN_MAX = 240
+#define GRN_MIN 255
+#define GRN_MAX 240
 
-#define BLU_MIN = 255
-#define BLU_MAX = 240
+#define BLU_MIN 255
+#define BLU_MAX 240
 
 // takes a picture using fswebcam and stores it in image.bmp
 int createPic(void) {
@@ -39,6 +39,7 @@ int analyzePixels(unsigned char r, unsigned char g, unsigned char b) {
 void analyzePicture(unsigned char image[HEIGHT][WIDTH*3]) {
     unsigned char red, green, blue;
     int pass = 1;
+    int r, c;
     // cycles through the rows and columns and stores the average of the pixels
     for (r = 0; r < HEIGHT; r++) {
         for (c = 0; c < WIDTH; c++) {
