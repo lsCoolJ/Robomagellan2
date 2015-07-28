@@ -11,13 +11,13 @@
 #define HEADER_SIZE 54
 
 #define RED_MAX 255
-#define RED_MIN 240
+#define RED_MIN 200
 
 #define GRN_MIN 255
-#define GRN_MAX 240
+#define GRN_MAX 200
 
 #define BLU_MIN 255
-#define BLU_MAX 240
+#define BLU_MAX 200
 
 // takes a picture using fswebcam and stores it in image.bmp
 int createPic(void) {
@@ -93,7 +93,7 @@ void openPic() {
                   break;
             }
             if (pass == 3) {
-                if(analyzePixel(red, green, blue)) {
+                if(!analyzePixel(red, green, blue)) {
                     image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
                 }
                 pass = 1;
