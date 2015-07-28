@@ -64,7 +64,8 @@ int analyzePixel(unsigned char r, unsigned char g, unsigned char b) {
 // open picture 
 void openPic() {
 
-    FILE *imageFile = fopen("image.bmp", "rw");
+    FILE *imageFile = fopen("image.bmp", "r");
+    FILE *image2 = fopen("image2.bmp", "w");
     char header[54];
 
     int widthTemp; // not using these because we're storing them into the command
@@ -103,12 +104,12 @@ void openPic() {
         }
     }
 
-    fwrite(header, 1, 54, imageFile);
-    fwrite(image, 1, HEIGHT * WIDTH * 3, imageFile);
+    fwrite(header, 1, 54, image2);
+    fwrite(image, 1, HEIGHT * WIDTH * 3, image2);
 }
 
 void showPic() {
-    system("fim -a image.bmp");
+    system("fim -a image2.bmp");
 }
 
 int main(void) {
