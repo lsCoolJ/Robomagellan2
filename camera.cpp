@@ -52,7 +52,7 @@ void analyzePicture(unsigned char image[HEIGHT][WIDTH*3]) {
                   break;
             }
             if (pass == 3) {
-                if(!analyzePixel(image[r][c])) {
+                if(!analyzePixel(red, green, blue)) {
                     image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
                 }
                 pass = 1;
