@@ -94,7 +94,8 @@ void openPic() {
             }
             // if (pass == 3) {
                 // if(!analyzePixel(red, green, blue)) {
-                    image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
+            image[r][c] = 0;
+//                    image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
                 // }
             //     pass = 1;
             // }
