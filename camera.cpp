@@ -24,24 +24,13 @@ int createPic(void) {
     system("fswebcam -r 1200x720 image.bmp");
 }
 
-// open picture 
-void openPic() {
-
-    FILE *imageFile = fopen("image.bmp", "rw");
-    char header[54];
-
-    int widthTemp; // not using these because we're storing them into the command
-    int heightTemp;
-
-    fread(header, 1, 54, imageFile); // remove the offset off the first file
-
-    unsigned char image[HEIGHT][WIDTH*3];
-    fread(image, 1, HEIGHT * WIDTH * 3, imageFile);
-    
-    analyzePicture(image);
-
-    fwrite(header, 1, 54, imageFile);
-    fwrite(image, 1, HEIGHT * WIDTH * 3, imageFile);
+// analyzes pixel
+int analyzePixels(unsigned char r, unsigned char g, unsigned char b) {
+    int retVal = 0;
+    retVal = r >= RED_MIN && r <= RED_MAX ? 1 : 0;  
+    retVal = retVal && g >= GRN_MIN && g <= GRN_MAX ? 1 : 0;
+    retVal = retVAL && b >= BLU_MIN && b <= BLU_MAX ? 1 : 0;
+    return retVal;
 }
 
 // analyzes the picture
@@ -69,13 +58,24 @@ void analyzePicture(unsigned char image[HEIGHT][WIDTH*3]) {
     }
 }
 
-// analyzes pixel
-int analyzePixels(unsigned char r, unsigned char g, unsigned char b) {
-    int retVal = 0;
-    retVal = r >= RED_MIN && r <= RED_MAX ? 1 : 0;  
-    retVal = retVal && g >= GRN_MIN && g <= GRN_MAX ? 1 : 0;
-    retVal = retVAL && b >= BLU_MIN && b <= BLU_MAX ? 1 : 0;
-    return retVal;
+// open picture 
+void openPic() {
+
+    FILE *imageFile = fopen("image.bmp", "rw");
+    char header[54];
+
+    int widthTemp; // not using these because we're storing them into the command
+    int heightTemp;
+
+    fread(header, 1, 54, imageFile); // remove the offset off the first file
+
+    unsigned char image[HEIGHT][WIDTH*3];
+    fread(image, 1, HEIGHT * WIDTH * 3, imageFile);
+    
+    analyzePicture(image);
+
+    fwrite(header, 1, 54, imageFile);
+    fwrite(image, 1, HEIGHT * WIDTH * 3, imageFile);
 }
 
 void showPic() {
