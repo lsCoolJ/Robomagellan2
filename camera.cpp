@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 #define HEIGHT 720
 #define WIDTH 1200
