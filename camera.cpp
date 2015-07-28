@@ -93,7 +93,7 @@ void openPic() {
                   break;
             }
             if (pass == 3) {
-                if(!analyzePixel(red, green, blue)) {
+                if(analyzePixel(red, green, blue)) {
                     image[r][c - 2] = image[r][c - 1] = image[r][c] = 0;
                 }
                 pass = 1;
