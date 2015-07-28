@@ -80,6 +80,7 @@ void openPic() {
     unsigned char red, green, blue;
     int pass = 1;
     int r, c;
+
     // cycles through the rows and columns and stores the average of the pixels
     for (r = 0; r < HEIGHT; r++) {
         for (c = 0; c < WIDTH; c++) {
@@ -97,6 +98,7 @@ void openPic() {
                 }
                 pass = 1;
             }
+            pass++;
         }
     }
 
