@@ -40,6 +40,7 @@ int analyzePixel(unsigned char r, unsigned char g, unsigned char b) {
 // Ben's method that he wrote
 void analyzePicture() {
     unsigned char header[HEADER_SIZE];
+    int picSize;
     FILE *picture = fopen("image.bmp", "rb");
     FILE *picture2 = fopen("image2.bmp", "wb");
 
