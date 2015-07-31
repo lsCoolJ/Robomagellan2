@@ -29,8 +29,8 @@ void createPic(void) {
 // analyzes pixel
 int analyzePixel(unsigned char r, unsigned char g, unsigned char b) {
     int retVal = 0;
-    if((r > RED_MIN) && (r < RED_MAX) &&
-      (g > GRN_MIN) && (g < GRN_MAX) &&
+    if((r > RED_MIN && r < RED_MAX) &&
+      (g > GRN_MIN && g < GRN_MAX) &&
       (b > BLU_MIN && b < BLU_MAX)) {
         retVal = 1;
     }
@@ -66,6 +66,9 @@ void analyzePicture() {
 
     fwrite(header, sizeof(char), HEADER_SIZE, picture2);
     fwrite(img, sizeof(char), HEIGHT * WIDTH * 3, picture2);
+
+    fclose(picture);
+    fclose(picture2);
 }
 
 // analyzes the picture
