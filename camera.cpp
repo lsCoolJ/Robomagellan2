@@ -23,7 +23,7 @@
 
 // takes a picture using fswebcam and stores it in image.bmp
 void createPic(void) {
-    system("fswebcam -r " + RESOLUTION + " --no-banner image.bmp");
+    system("fswebcam -r 640x480 --no-banner image.bmp");
 }
 
 // analyzes pixel
