@@ -25,7 +25,7 @@
 
 // takes a picture using fswebcam and stores it in image.bmp
 void createPic(void) {
-    system("fswebcam -r 640x480 image.bmp");
+    system("fswebcam -r 640x480 image.jpg");
 }
 
 // analyzes pixel
@@ -43,8 +43,8 @@ int analyzePixel(unsigned char r, unsigned char g, unsigned char b) {
 void analyzePicture() {
     unsigned char header[HEADER_SIZE];
     int picSize;
-    FILE *picture = fopen("image.bmp", "r");
-    FILE *picture2 = fopen("image2.bmp", "w");
+    FILE *picture = fopen("image.jpg", "r");
+    FILE *picture2 = fopen("image2.jpg", "w");
 
     // Read in the header
     fread(header, sizeof(char), HEADER_SIZE, picture);
@@ -57,9 +57,9 @@ void analyzePicture() {
     fread(img, sizeof(char), picSize, picture);
 
     int r, c;
-    for(r = 0; r < HEIGHT; r++) {
-        for(c = 0; c < WIDTH * 3; c = c + 3) {
-            img[r][c] = 0x00;
+//    for(r = 0; r < HEIGHT; r++) {
+//        for(c = 0; c < WIDTH * 3; c = c + 3) {
+//            img[r][c] = 0x00;
             // int check = analyzePixel(img[r][c], img[r][c+1], img[r][c+2]);
             // if(check == 0) {
             //     img[r][c] = 0x00;
@@ -70,8 +70,17 @@ void analyzePicture() {
             //     img[r][c+1] = 0xFF;
             //     img[r][c+2] = 0xFF;
             // }
-        }
-    }
+//        }
+//    }
+
+    for (r = 0; r < HEIGHT; r++) {
+       for (c = 0; c < WIDTH * 3; c += 3) {
+           char temp = img[r][c];
+           img[r][c] = img[r][c+1];
+           img[r][c+1] = temp; 
+       }
+
+    } 
 
     fwrite(header, sizeof(char), HEADER_SIZE, picture2);
     fwrite(img, sizeof(char), HEIGHT * WIDTH * 3, picture2);
