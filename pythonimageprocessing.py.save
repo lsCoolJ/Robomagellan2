@@ -1,0 +1,22 @@
+import os
+
+os.system("fswebcam -r 640x480 test.jpg")
+
+from PIL import Image
+
+
+#print "HEY"
+
+#def main():
+
+#    print "HEY"
+
+ #   img = Image.open('test.jpg', 'r')
+ #   img.mode = 'RGBA'
+
+#    redData = img.tostring('raw', 'R')
+#    greenData = img.tostring('raw', 'G')
+#    blueData = img.tostring('raw', 'B')
+#    alphaData = img.tostring('raw', 'A')
+
+    print "HEY"

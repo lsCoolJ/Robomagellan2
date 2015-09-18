@@ -1,3 +1,4 @@
+
 import os
 import pprint
 
@@ -8,11 +9,14 @@ from PIL import Image
 def main():
 
     img = Image.open('test.jpg', 'r')
-    print pprint.pprint(img)
+
+   # print pprint.pprint(img)
 
     width, height = img.size
+    imgNew = Image.new('RGB', (width, height), "black")
+    pixels = imgNew.load()
 
-    print width,height
+    #print width,height
     img = img.convert('RGB')
 
     #colors = img.getcolors()
@@ -21,14 +25,24 @@ def main():
 
     count = 0
 
+    widthPixels = [0] * width
     for i in range(width):
+       widthPixels[i] = 0;
        for j in range(height):
            r, g, b = img.getpixel((i, j))
            if r <= 255 and r >= 210 and g <= 150 and g >= 90 and b >= 0 and b <= 155:
+              pixels[i, j] = (255, 255, 255) 
               # print i,j
+              #if i in widthPixels:
+              widthPixels[i] = widthPixels[i] + 1
+              #else:
+              #    widthPixels[i] = 1
               count+=1
           # print r, g, b
     #print colors
-    print count
+    imgNew.save("new.jpg")
+    print max(widthPixels)
+    
+    
 
 main()
